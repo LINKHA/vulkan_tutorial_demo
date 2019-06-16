@@ -27,4 +27,3 @@ set_output_directories (${PROJECT_SOURCE_DIR}/bin RUNTIME PDB)
 include_directories(${CMAKE_SOURCE_DIR}/includes)
 
 add_subdirectory (src)
-add_subdirectory (thire_party)
