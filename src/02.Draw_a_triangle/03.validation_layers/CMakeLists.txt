@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-set (TARGET_NAME 01.Development_environment)
+set (TARGET_NAME 03.validation_layers)
 
 if(CMAKE_CL_64)
 	link_directories(${CMAKE_SOURCE_DIR}/lib/x64)
@@ -12,7 +12,7 @@ file (GLOB SOURCE_FILES *.cpp *.h)
 
 add_executable (${TARGET_NAME} ${SOURCE_FILES} ${HANDER_DIR} ${INLINE_DIR})
 
-set_target_properties(${TARGET_NAME} PROPERTIES FOLDER "01.Development_environment") 
+set_target_properties(${TARGET_NAME} PROPERTIES FOLDER "02.Draw_a_triangle") 
 
 target_link_libraries (${TARGET_NAME} vulkan-1)
 

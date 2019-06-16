@@ -2,3 +2,15 @@ bin/01.Development_environment.pdb
 bin/01.Development_environment.ilk
 bin/01.Development_environment.exe
 build/
+bin/02.instance_creation.pdb
+bin/02.instance_creation.ilk
+bin/01.Base_code.pdb
+bin/01.Base_code.ilk
+bin/01.Base_code.exe
+bin/03.validation_layers.pdb
+bin/03.validation_layers.ilk
+bin/02.instance_creation.exe
+bin/04.physical_device_selection.pdb
+bin/04.physical_device_selection.ilk
+bin/03.validation_layers.exe
+bin/04.physical_device_selection.exe
