@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-set (TARGET_NAME 12.render_passes)
+set (TARGET_NAME 15.command_buffers)
 
 if(CMAKE_CL_64)
 	link_directories(${CMAKE_SOURCE_DIR}/lib/x64)

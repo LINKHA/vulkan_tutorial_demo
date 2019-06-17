@@ -10,5 +10,12 @@ add_subdirectory(09.graphics_pipeline)
 add_subdirectory(10.shader_modules)
 add_subdirectory(11.fixed_functions)
 add_subdirectory(12.render_passes)
+add_subdirectory(13.graphics_pipeline_complete)
+add_subdirectory(14.framebuffers)
+add_subdirectory(15.command_buffers)
+add_subdirectory(16.hello_triangle)
+
+
+
 
 
