@@ -5,5 +5,5 @@
 #include <string.h>
 
 void InitShaderCompiler();
-bool GlslToSpv(const VkShaderStageFlagBits shader_type, const char* src, Vector<unsigned int>& spirv, String& error);
+bool GlslToSpv(const VkShaderStageFlagBits shader_type, const char* src, std::vector<unsigned int>& spirv, std::string& error);
 void DeinitShaderCompiler();
