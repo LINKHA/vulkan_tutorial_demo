@@ -1,2 +1,3 @@
 add_subdirectory(01.Development_environment)
 add_subdirectory(02.Draw_a_triangle)
+add_subdirectory(GlslToSpirv)
