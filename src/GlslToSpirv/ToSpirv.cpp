@@ -5,6 +5,15 @@
 #include <fstream>
 #include <assert.h>
 
+#if _WIN32 || _WIN64
+#include <Windows.h>
+#elif IOS
+#import <UIKit/UIKit.h>
+#elif MAC
+#import <Cocoa/Cocoa.h>
+#elif __ANDROID__
+#include "android/jni.h"
+#endif
 
 std::string gFormat(const char* format, ...)
 {
@@ -93,7 +102,31 @@ bool gWriteAllBytes(const std::string& path, unsigned char* buffer,int size)
 		return false;
 	}
 }
-
+#if _WIN32 || _WIN64
+const std::string& GetDataPath()
+{
+	char buffer[MAX_PATH];
+	::GetModuleFileName(nullptr, buffer, MAX_PATH);
+	std::string path = buffer;
+	path = path.replace(path.find("/./"), 1, "/").substr(0, path.find_last_of("\\")) + "/Assets";
+	
+	return path;
+}
+#elif IOS
+const std::string& GetDataPath()
+{
+	std::string path = [[[NSBundle mainBundle] bundlePath] UTF8String];
+	path += "/Assets";
+	return path;
+}
+#elif MAC
+const  std::string& GetDataPath()
+{
+	std::string path = [[[NSBundle mainBundle] resourcePath] UTF8String];
+	path += "/Assets";
+	return path;
+}
+#endif
 void GlslToSpirvCached(const std::string& glsl, VkShaderStageFlagBits shader_type, std::vector<unsigned int>& spirv)
 {
 	unsigned char hash_bytes[16];
@@ -107,7 +140,7 @@ void GlslToSpirvCached(const std::string& glsl, VkShaderStageFlagBits shader_typ
 		md5_str += gFormat("%02x", hash_bytes[i]);
 	}
 
-	//std::string cache_path = Application::Instance()->GetSavePath() + "/" + md5_str + ".cache";
+	std::string cache_path = GetDataPath() + "/" + md5_str + ".cache";
 	if (gFileExist(cache_path))
 	{
 		auto buffer = gReadAllBytes(cache_path);
