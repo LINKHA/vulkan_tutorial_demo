@@ -2,8 +2,12 @@
 #include <vulkan/vulkan.h>
 #include <vulkan_shader_compiler.h>
 #include <stdarg.h>
-#include <fstream>
 #include <assert.h>
+
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 #if _WIN32 || _WIN64
 #include <Windows.h>
@@ -154,7 +158,7 @@ void GlslToSpirvCached(const std::string& glsl, VkShaderStageFlagBits shader_typ
 		bool success = GlslToSpv(shader_type, glsl.c_str(), spirv, error);
 		if (!success)
 		{
-			//Log("shader compile error: %s", error.c_str());
+			printf("shader compile error: %s", error.c_str());
 		}
 		assert(success);
 		unsigned char* buffer;
@@ -163,4 +167,33 @@ void GlslToSpirvCached(const std::string& glsl, VkShaderStageFlagBits shader_typ
 		memcpy(buffer, &spirv[0], bufferSize);
 		gWriteAllBytes(cache_path, buffer, bufferSize);
 	}
+}
+
+std::string GetShaderSource(const std::string& path)
+{
+	// 1. retrieve the vertex/fragment source code from filePath
+	std::string code;
+	std::ifstream shaderFile;
+	// ensure ifstream objects can throw exceptions:
+	shaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
+	try
+	{
+		// open files
+		shaderFile.open(path);
+		
+		std::stringstream shaderStream;
+		// read file's buffer contents into streams
+		shaderStream << shaderFile.rdbuf();
+		// close file handlers
+		shaderFile.close();
+		// convert stream into string
+		code = shaderStream.str();
+	}
+	catch (std::ifstream::failure e)
+	{
+		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+	}
+
+	return code;
 }
