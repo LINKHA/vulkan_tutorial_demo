@@ -22,10 +22,14 @@ target_link_libraries (${TARGET_NAME} glfw3)
 
 target_link_libraries (${TARGET_NAME} GlslToSpirv)
 
+target_link_libraries (${TARGET_NAME} vulkan_spir)
+
 include_directories (${CMAKE_SOURCE_DIR}/thire_party/glfw/include)
 
 include_directories (${CMAKE_SOURCE_DIR}/thire_party/glm)
 
 include_directories (${CMAKE_SOURCE_DIR}/thire_party/vulkan)
+
+include_directories (${CMAKE_SOURCE_DIR}/thire_party/vulkan_spir)
 
 include_directories (${CMAKE_SOURCE_DIR}/src/GlslToSpirv)

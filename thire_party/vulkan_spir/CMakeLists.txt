@@ -8,18 +8,10 @@ else()
 	link_directories(${CMAKE_SOURCE_DIR}/lib/x86)
 endif()
 
-#file(GLOB_RECURSE _HEADERS  *.h *.hpp)
+file(GLOB_RECURSE _HEADERS  *.h *.hpp)
 
-#file(GLOB_RECURSE _SCRS  *.c *.cpp *.cxx *.cc)
+file(GLOB_RECURSE _SCRS  *.c *.cpp *.cxx *.cc)
 
-set(_HEADERS 
-vulkan_include.h
-vulkan_shader_compiler.h
-   )
-
-set(_SCRS 
-vulkan_shader_compiler.cpp
-	)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_library(${TARGET_NAME} ${_SCRS} ${_HEADERS} )

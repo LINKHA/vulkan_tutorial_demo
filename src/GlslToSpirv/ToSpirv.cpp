@@ -1,4 +1,5 @@
 #include "ToSpirv.h"
+#include "md5.h"
 #include <vulkan/vulkan.h>
 #include <vulkan_shader_compiler.h>
 #include <stdarg.h>

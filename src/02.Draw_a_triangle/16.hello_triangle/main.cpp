@@ -11,7 +11,15 @@
 #include <optional>
 #include <set>
 
-#include <ToSpirv.h>
+#include "tToSpirv.h"
+
+#ifdef max
+#undef max
+#endif
+
+#ifdef min
+#undef min
+#endif
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
@@ -430,15 +438,15 @@ private:
 	}
 
 	void createGraphicsPipeline() {
-		auto vertShaderCode = readFile("vert.spv");
-		auto fragShaderCode = readFile("frag.spv");
-		/*std::string vsSource = GetShaderSource("10_shader_base.vert");
+		//auto vertShaderCode = readFile("vert.spv");
+		//auto fragShaderCode = readFile("frag.spv");
+		std::string vsSource = GetShaderSource("10_shader_base.vert");
 		std::string fsSource = GetShaderSource("10_shader_base.frag");
 
 		std::vector<unsigned int> vertShaderCode;
 		std::vector<unsigned int> fragShaderCode;
 		GlslToSpirvCached(vsSource, VK_SHADER_STAGE_VERTEX_BIT, vertShaderCode);
-		GlslToSpirvCached(fsSource, VK_SHADER_STAGE_FRAGMENT_BIT, fragShaderCode);*/
+		GlslToSpirvCached(fsSource, VK_SHADER_STAGE_FRAGMENT_BIT, fragShaderCode);
 
 
 		VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
@@ -696,11 +704,11 @@ private:
 		currentFrame = (currentFrame + 1) % MAX_FRAMES_IN_FLIGHT;
 	}
 
-	VkShaderModule createShaderModule(const std::vector<char>& code) {
+	VkShaderModule createShaderModule(const std::vector<unsigned int>& code) {
 		VkShaderModuleCreateInfo createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-		createInfo.codeSize = code.size();
-		createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+		createInfo.codeSize = sizeof(unsigned int) * code.size();
+		createInfo.pCode = &code[0];
 
 		VkShaderModule shaderModule;
 		if (vkCreateShaderModule(device, &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {
