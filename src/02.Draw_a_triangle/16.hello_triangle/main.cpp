@@ -11,7 +11,7 @@
 #include <optional>
 #include <set>
 
-#include "tToSpirv.h"
+#include "ToSpirv.h"
 
 #ifdef max
 #undef max
@@ -438,15 +438,16 @@ private:
 	}
 
 	void createGraphicsPipeline() {
-		//auto vertShaderCode = readFile("vert.spv");
-		//auto fragShaderCode = readFile("frag.spv");
-		std::string vsSource = GetShaderSource("10_shader_base.vert");
-		std::string fsSource = GetShaderSource("10_shader_base.frag");
+
+		ToSpirv_Init();
+
+		std::string vsSource = ToSpirv_GetShaderSource("10_shader_base.vert");
+		std::string fsSource = ToSpirv_GetShaderSource("10_shader_base.frag");
 
 		std::vector<unsigned int> vertShaderCode;
 		std::vector<unsigned int> fragShaderCode;
-		GlslToSpirvCached(vsSource, VK_SHADER_STAGE_VERTEX_BIT, vertShaderCode);
-		GlslToSpirvCached(fsSource, VK_SHADER_STAGE_FRAGMENT_BIT, fragShaderCode);
+		ToSpirv_GetSpirv(vsSource, VK_SHADER_STAGE_VERTEX_BIT, vertShaderCode);
+		ToSpirv_GetSpirv(fsSource, VK_SHADER_STAGE_FRAGMENT_BIT, fragShaderCode);
 
 
 		VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);

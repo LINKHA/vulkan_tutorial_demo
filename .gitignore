@@ -50,3 +50,4 @@ bin/14.framebuffers.exe
 bin/13.graphics_pipeline_complete.pdb
 bin/13.graphics_pipeline_complete.ilk
 bin/13.graphics_pipeline_complete.exe
+bin/cache/

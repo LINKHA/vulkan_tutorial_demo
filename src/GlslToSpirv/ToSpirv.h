@@ -2,9 +2,13 @@
 
 #include <string>
 #include <vector>
+#include "vulkan_include.h"
 
 enum VkShaderStageFlagBits;
 
-void GlslToSpirvCached(const std::string& glsl, VkShaderStageFlagBits shader_type, std::vector<unsigned int>& spirv);
+void ToSpirv_Init();
 
-std::string GetShaderSource(const std::string& path);
+std::vector<unsigned int>& ToSpirv_GetSpirv(const std::string& glsl, VkShaderStageFlagBits shader_type, std::vector<unsigned int>& spirv);
+
+std::string ToSpirv_GetShaderSource(const std::string& path);
+
