@@ -13,14 +13,6 @@
 
 #include <ToSpirv.h>
 
-#ifdef max
-#undef max
-#endif
-
-#ifdef min
-#undef min
-#endif
-
 const int WIDTH = 800;
 const int HEIGHT = 600;
 
