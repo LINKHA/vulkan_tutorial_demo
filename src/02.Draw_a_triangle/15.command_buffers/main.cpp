@@ -11,6 +11,8 @@
 #include <optional>
 #include <set>
 
+#include <ToSpirv.h>
+
 const int WIDTH = 800;
 const int HEIGHT = 600;
 
@@ -401,8 +403,17 @@ private:
 	}
 
 	void createGraphicsPipeline() {
-		auto vertShaderCode = readFile("vert.spv");
-		auto fragShaderCode = readFile("frag.spv");
+
+		ToSpirv_Init();
+
+		std::string vsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_base.vert");
+		std::string fsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_base.frag");
+
+		std::vector<unsigned int> vertShaderCode;
+		std::vector<unsigned int> fragShaderCode;
+		ToSpirv_GetSpirv(vsSource, VK_SHADER_STAGE_VERTEX_BIT, vertShaderCode);
+		ToSpirv_GetSpirv(fsSource, VK_SHADER_STAGE_FRAGMENT_BIT, fragShaderCode);
+
 
 		VkShaderModule vertShaderModule = createShaderModule(vertShaderCode);
 		VkShaderModule fragShaderModule = createShaderModule(fragShaderCode);
@@ -594,11 +605,11 @@ private:
 		}
 	}
 
-	VkShaderModule createShaderModule(const std::vector<char>& code) {
+	VkShaderModule createShaderModule(const std::vector<unsigned int>& code) {
 		VkShaderModuleCreateInfo createInfo = {};
 		createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-		createInfo.codeSize = code.size();
-		createInfo.pCode = reinterpret_cast<const uint32_t*>(code.data());
+		createInfo.codeSize = sizeof(unsigned int) * code.size();
+		createInfo.pCode = &code[0];
 
 		VkShaderModule shaderModule;
 		if (vkCreateShaderModule(device, &createInfo, nullptr, &shaderModule) != VK_SUCCESS) {

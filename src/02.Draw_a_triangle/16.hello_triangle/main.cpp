@@ -11,7 +11,7 @@
 #include <optional>
 #include <set>
 
-#include "ToSpirv.h"
+#include <ToSpirv.h>
 
 #ifdef max
 #undef max
@@ -441,8 +441,8 @@ private:
 
 		ToSpirv_Init();
 
-		std::string vsSource = ToSpirv_GetShaderSource("10_shader_base.vert");
-		std::string fsSource = ToSpirv_GetShaderSource("10_shader_base.frag");
+		std::string vsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_base.vert");
+		std::string fsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_base.frag");
 
 		std::vector<unsigned int> vertShaderCode;
 		std::vector<unsigned int> fragShaderCode;

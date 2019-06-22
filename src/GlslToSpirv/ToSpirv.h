@@ -12,3 +12,5 @@ std::vector<unsigned int>& ToSpirv_GetSpirv(const std::string& glsl, VkShaderSta
 
 std::string ToSpirv_GetShaderSource(const std::string& path);
 
+const std::string ToSpirv_GetDataPath();
+

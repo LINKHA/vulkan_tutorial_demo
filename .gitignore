@@ -51,3 +51,9 @@ bin/13.graphics_pipeline_complete.pdb
 bin/13.graphics_pipeline_complete.ilk
 bin/13.graphics_pipeline_complete.exe
 bin/cache/
+bin/11.fixed_functions.pdb
+bin/11.fixed_functions.ilk
+bin/11.fixed_functions.exe
+bin/10.shader_modules.pdb
+bin/10.shader_modules.ilk
+bin/10.shader_modules.exe

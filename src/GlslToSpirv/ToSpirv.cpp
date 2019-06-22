@@ -122,30 +122,6 @@ bool gWriteAllBytes(const std::string& path, unsigned char* buffer,int size)
 		return false;
 	}
 }
-#if _WIN32 || _WIN64
-const std::string gGetDataPath()
-{
-	char buffer[MAX_PATH];
-	::GetModuleFileName(nullptr, buffer, MAX_PATH);
-	std::string path = buffer;
-	path = gReplaceAll(path,"\\","/").substr(0, path.find_last_of("\\")) + "/cache";
-	return path;
-}
-#elif IOS
-const std::string& gGetDataPath()
-{
-	std::string path = [[[NSBundle mainBundle] bundlePath] UTF8String];
-	path += "/cache";
-	return path;
-}
-#elif MAC
-const  std::string& gGetDataPath()
-{
-	std::string path = [[[NSBundle mainBundle] resourcePath] UTF8String];
-	path += "/cache";
-	return path;
-}
-#endif
 
 void ToSpirv_Init()
 {
@@ -165,7 +141,7 @@ std::vector<unsigned int>& ToSpirv_GetSpirv(const std::string& glsl, VkShaderSta
 		md5_str += gFormat("%02x", hash_bytes[i]);
 	}
 
-	std::string cache_path = gGetDataPath() + "/" + md5_str + ".cache";
+	std::string cache_path = ToSpirv_GetDataPath()  +"/cache" + "/" + md5_str + ".cache";
 	if (gFileExist(cache_path))
 	{
 		auto buffer = gReadAllBytes(cache_path);
@@ -219,3 +195,28 @@ std::string ToSpirv_GetShaderSource(const std::string& path)
 
 	return code;
 }
+
+#if _WIN32 || _WIN64
+const std::string ToSpirv_GetDataPath()
+{
+	char buffer[MAX_PATH];
+	::GetModuleFileName(nullptr, buffer, MAX_PATH);
+	std::string path = buffer;
+	path = gReplaceAll(path, "\\", "/").substr(0, path.find_last_of("\\"));
+	return path;
+}
+#elif IOS
+const std::string& ToSpirv_GetDataPath()
+{
+	std::string path = [[[NSBundle mainBundle] bundlePath] UTF8String];
+	path += "/cache";
+	return path;
+}
+#elif MAC
+const  std::string& ToSpirv_GetDataPath()
+{
+	std::string path = [[[NSBundle mainBundle] resourcePath] UTF8String];
+	path += "/cache";
+	return path;
+}
+#endif
