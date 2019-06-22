@@ -5,6 +5,12 @@ cmake_minimum_required (VERSION 2.8)
 # Define CMake options
 include (CMakeDependentOption)
 
+if(CMAKE_CL_64)
+	link_directories(${CMAKE_SOURCE_DIR}/lib/x64)
+else()
+	link_directories(${CMAKE_SOURCE_DIR}/lib/x86)
+endif()
+
 # Use folders
 set_property(GLOBAL PROPERTY USE_FOLDERS On)
 

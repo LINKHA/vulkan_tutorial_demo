@@ -2,12 +2,6 @@ cmake_minimum_required(VERSION 3.1)
 
 set (TARGET_NAME 01.Base_code)
 
-if(CMAKE_CL_64)
-	link_directories(${CMAKE_SOURCE_DIR}/lib/x64)
-else()
-	link_directories(${CMAKE_SOURCE_DIR}/lib/x86)
-endif()
-
 file (GLOB SOURCE_FILES *.cpp *.h)
 
 add_executable (${TARGET_NAME} ${SOURCE_FILES} ${HANDER_DIR} ${INLINE_DIR})
