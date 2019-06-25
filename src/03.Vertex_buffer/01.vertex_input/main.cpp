@@ -498,8 +498,8 @@ private:
     void createGraphicsPipeline() {
 		ToSpirv_Init();
 
-		std::string vsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_base.vert");
-		std::string fsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_base.frag");
+		std::string vsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_vertexbuffer.vert");
+		std::string fsSource = ToSpirv_GetShaderSource(ToSpirv_GetDataPath() + "/assert/" + "shader_vertexbuffer.frag");
 
 		std::vector<unsigned int> vertShaderCode;
 		std::vector<unsigned int> fragShaderCode;
