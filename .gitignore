@@ -57,3 +57,6 @@ bin/11.fixed_functions.exe
 bin/10.shader_modules.pdb
 bin/10.shader_modules.ilk
 bin/10.shader_modules.exe
+bin/17.swap_chain_recreation.exe
+bin/17.swap_chain_recreation.ilk
+bin/17.swap_chain_recreation.pdb

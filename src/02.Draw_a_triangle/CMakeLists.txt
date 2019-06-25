@@ -14,8 +14,4 @@ add_subdirectory(13.graphics_pipeline_complete)
 add_subdirectory(14.framebuffers)
 add_subdirectory(15.command_buffers)
 add_subdirectory(16.hello_triangle)
-
-
-
-
-
+add_subdirectory(17.swap_chain_recreation)
