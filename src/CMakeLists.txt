@@ -1,4 +1,6 @@
 add_subdirectory(01.Development_environment)
 add_subdirectory(02.Draw_a_triangle)
 add_subdirectory(03.Vertex_buffer)
+add_subdirectory(04.Uniform_buffer)
+add_subdirectory(05.Texture_buffer)
 add_subdirectory(GlslToSpirv)
