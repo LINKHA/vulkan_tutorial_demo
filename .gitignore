@@ -93,3 +93,15 @@ bin/02.descriptor_sets.pdb
 bin/03.texture_mapping.pdb
 bin/03.texture_mapping.ilk
 bin/01.descriptor_layout.exe
+bin/01.depth_buffering.exe
+bin/01.multisampling.pdb
+bin/01.multisampling.ilk
+bin/01.mipmapping.exe
+bin/01.depth_buffering.pdb
+bin/01.depth_buffering.ilk
+bin/01.model_loading.exe
+bin/01.mipmapping.pdb
+bin/01.mipmapping.ilk
+bin/01.multisampling.exe
+bin/01.model_loading.pdb
+bin/01.model_loading.ilk
